@@ -1,0 +1,18 @@
+{
+  "name": "node-express-demo",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "imbamboo <tonydev@foxmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/imbamboo/node-express-demo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public",
+    "test",
+    "tests"
+  ]
+}
