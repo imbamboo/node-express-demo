@@ -10,11 +10,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(function (req, res, next) {
-    let showTests = req.query.test == "1"
-        && app.get("env") != "production";
+    var showTests = req.query.test == "1" && app.get("env") != "production";
     res.locals.showTests = showTests;
     next();
 });
+
+//if(app.thing !== null) console.log("bleat!");
 
 app.get("/", function (req, res) {
     res.locals.title = "homepage";
@@ -23,7 +24,9 @@ app.get("/", function (req, res) {
 
 app.get("/about", function (req, res) {
     res.locals.title = "about - nodeexpress";
-    res.render("about");
+    res.render("about", {
+        pageTestScript: "/qa/tests-about.js",
+    });
 });
 
 app.use(function (req, res, next) {
