@@ -9,11 +9,20 @@ app.use(express.static(__dirname + "/public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+app.use(function (req, res, next) {
+    let showTests = req.query.test == "1"
+        && app.get("env") != "production";
+    res.locals.showTests = showTests;
+    next();
+});
+
 app.get("/", function (req, res) {
+    res.locals.title = "homepage";
     res.render("homepage");
 });
 
 app.get("/about", function (req, res) {
+    res.locals.title = "about - nodeexpress";
     res.render("about");
 });
 

@@ -1,9 +1,33 @@
 <!doctype html>
 <html>
+
+<head>
     <title>{{title}}</title>
-    <body>
-        <img src="/images/logo.jpg" style="width: 100px;" />
-        <p style="border-bottom: solid 1px #000; margin-bottom: 10px; padding: 10px;">node-express</p>
-        {{{body}}}
-    </body>
+    <script src="/jquery/dist/jquery.js"></script>
+    {{#if showTests}}
+    <link rel="stylesheet" href="/vendor/mocha.css"> 
+    {{/if}}
+</head>
+<body>
+    {{#if showTests}}
+    <div id="mocha"></div>
+    <script src="/vendor/mocha.js"></script>
+    <script src="/vendor/chai.js"></script>
+    <script>
+        mocha.ui("tdd");
+        var assert = chai.assert;
+    </script>
+    <script src="/qa/tests-global.js"></script>
+    {{#if pageTestScripts}}
+    <script src="{{pageTestScripts}}"></script>
+    {{/if}}
+    <script>
+        mocha.run();
+    </script>
+    {{/if}}
+    <img src="/images/logo.jpg" style="width: 100px;" />
+    <p style="border-bottom: solid 1px #000; margin-bottom: 10px; padding: 10px;">node-express</p>
+    {{{body}}}
+</body>
+
 </html>
